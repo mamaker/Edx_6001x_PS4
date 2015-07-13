@@ -154,9 +154,10 @@ def updateHand(hand, word):
     returns: dictionary (string -> int)
     """
     # TO DO ... <-- Remove this comment when you code this function
-
-
-
+    updatedHand = hand.copy()
+    for letter in word:
+        updatedHand[letter] -= 1
+    return updatedHand
 #
 # Problem #3: Test word validity
 #
@@ -172,7 +173,13 @@ def isValidWord(word, hand, wordList):
     wordList: list of lowercase strings
     """
     # TO DO ... <-- Remove this comment when you code this function
-
+    checkHand = hand.copy()
+    for letter in word:
+        if checkHand.get(letter, 0) > 0:
+            checkHand[letter] -= 1
+        else:
+            return False
+    return word in wordList
 
 #
 # Problem #4: Playing a hand
@@ -186,8 +193,10 @@ def calculateHandlen(hand):
     returns: integer
     """
     # TO DO... <-- Remove this comment when you code this function
-
-
+    count = 0
+    for k in hand:
+        count += hand[k]
+    return count
 
 def playHand(hand, wordList, n):
     """
@@ -213,11 +222,13 @@ def playHand(hand, wordList, n):
     """
     # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
     # Keep track of the total score
-    
+    totalScore = 0
+
     # As long as there are still letters left in the hand:
-    
+    while calculateHandlen(hand) > 0:    
         # Display the hand
-        
+        displayHand(hand)
+
         # Ask user for input
         
         # If the input is a single period:
@@ -237,7 +248,7 @@ def playHand(hand, wordList, n):
                 
                 # Update the hand 
                 
-
+         
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
 
 
