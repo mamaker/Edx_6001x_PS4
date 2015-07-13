@@ -223,34 +223,40 @@ def playHand(hand, wordList, n):
     # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
     # Keep track of the total score
     totalScore = 0
-
+    word = ''
     # As long as there are still letters left in the hand:
     while calculateHandlen(hand) > 0:    
         # Display the hand
         displayHand(hand)
 
         # Ask user for input
-        
+        word = raw_input('Enter word, or a "." to indicate that you are finished: ')
         # If the input is a single period:
-        
+        if word == '.': 
             # End the game (break out of the loop)
-
-            
+            break
         # Otherwise (the input is not a single period):
-        
+        else:    
             # If the word is not valid:
-            
+            if not isValidWord(word, hand, wordList):
                 # Reject invalid word (print a message followed by a blank line)
-
+                print 'Invalid word, please try again.'
+                print ''
             # Otherwise (the word is valid):
-
+            else:
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                
+                score = getWordScore(word, n)
+                totalScore += score
+                print word, 'earned', score, 'points. Total:', totalScore, 'points'
+                print ''
                 # Update the hand 
-                
-         
-    # Game is over (user entered a '.' or ran out of letters), so tell user the total score
+                hand = updateHand(hand, word)
 
+    # Game is over (user entered a '.' or ran out of letters), so tell user the total score
+    finalMessage = 'Run out of letters.'
+    if word == '.':
+        finalMessage = 'Goodbye!'
+    print finalMessage, 'Total score:', totalScore, 'points.' 
 
 #
 # Problem #5: Playing a game
@@ -279,4 +285,8 @@ def playGame(wordList):
 #
 if __name__ == '__main__':
     wordList = loadWords()
-    playGame(wordList)
+    #playGame(wordList)
+
+    #Testing playHand()
+    playHand({'h':1, 'i':1, 'c':1, 'z':1, 'm':2, 'a':1}, wordList, 7)
+

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>54fa8e85-402c-4ceb-a5a9-4c39419c591f</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>test_ps4a.py</StartupFile>
+    <StartupFile>ps4a.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
